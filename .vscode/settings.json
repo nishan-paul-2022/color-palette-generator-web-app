@@ -1,0 +1,30 @@
+{
+  "window.commandCenter": 1,
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.tabSize": 2,
+  "editor.indentSize": "tabSize",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always",
+    "source.organizeImports": "always",
+    "source.sortImports": "always",
+    "source.addMissingImports.ts": "always",
+    "source.fixAll.ts": "always",
+    "source.removeUnused.ts": "always",
+    "source.removeUnusedImports": "always"
+  },
+  "files.autoSave": "afterDelay",
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
