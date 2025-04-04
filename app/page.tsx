@@ -59,6 +59,8 @@ import {
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
+import AppIcon from "@/components/ui/icons/icon.svg";
+
 interface ColorSegment {
   id: string;
   color: string;
@@ -658,10 +660,13 @@ export default function ColorSegmentGenerator() {
 
   return (
     <div className="container mx-auto py-8 px-4">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Color Palette Generator</h1>
+    <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold flex items-center gap-2">
+          <AppIcon className="w-8 h-8" />
+          Color Palette Generator
+        </h1>
         <ThemeToggle />
-      </div>
+    </div>
 
       <div className="flex flex-col gap-6">
         {/* Set Selection Tabs */}
