@@ -1,5 +1,6 @@
 "use client";
 
+import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -657,7 +658,10 @@ export default function ColorSegmentGenerator() {
 
   return (
     <div className="container mx-auto py-8 px-4">
-      <h1 className="text-2xl font-bold mb-6">Color Palette Generator</h1>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold">Color Palette Generator</h1>
+        <ThemeToggle />
+      </div>
 
       <div className="flex flex-col gap-6">
         {/* Set Selection Tabs */}
