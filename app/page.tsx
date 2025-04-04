@@ -814,7 +814,7 @@ export default function ColorSegmentGenerator() {
           <Card>
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <CardTitle className="text-lg font-medium text-primary">
-                Your Color Collection
+                Color Segments
               </CardTitle>
               <div className="flex gap-2">
                 <Button
