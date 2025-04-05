@@ -36,7 +36,7 @@ const buttonVariants = cva(
 );
 
 export interface ButtonProps
-  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'type'>,
+  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'type' | 'color'>,
     VariantProps<typeof buttonVariants> {
   htmlType?: 'button' | 'submit' | 'reset';
 }
@@ -79,10 +79,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <AntButton
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref as React.Ref<HTMLButtonElement>}
-        type={getAntType()}
+        danger={variant === 'destructive'}
         size={getAntSize()}
         htmlType={htmlType}
-        {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}
+        type={getAntType()}
+        {...(props as any)}
       >
         {children}
       </AntButton>
