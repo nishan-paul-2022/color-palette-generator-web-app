@@ -55,9 +55,12 @@ export default function ColorSegmentGenerator() {
   }, []);
 
   return (
-    <div className="container mx-auto py-8 px-4" ref={containerRef}>
+    <div
+      className="container mx-auto py-8 px-4 min-h-screen bg-background dark:bg-background-dark"
+      ref={containerRef}
+    >
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold flex items-center gap-2">
+        <h1 className="text-2xl font-bold flex items-center gap-2 text-foreground dark:text-foreground-dark">
           <AppIcon className="w-8 h-8" />
           Color Palette Generator
         </h1>

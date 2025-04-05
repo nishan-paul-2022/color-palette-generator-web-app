@@ -23,7 +23,12 @@ export function SetSelector({ onCreateNewSet, onEditSet }: SetSelectorProps) {
       <CardContent className="p-4">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-medium">Color Palettes</h2>
-          <Button variant="outline" size="sm" onClick={onCreateNewSet}>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={onCreateNewSet}
+            className="dark:bg-primary-dark dark:text-primary-foreground-dark dark:border-primary-dark dark:hover:bg-primary-dark/90"
+          >
             <Plus className="h-4 w-4 mr-2" />
             New Set
           </Button>
@@ -33,15 +38,15 @@ export function SetSelector({ onCreateNewSet, onEditSet }: SetSelectorProps) {
           {sets.map((set) => (
             <div
               key={set.id}
-              className={`relative group border rounded-md px-3 py-2 cursor-pointer ${
+              className={`relative group border border-border dark:border-border-dark rounded-md px-3 py-2 cursor-pointer ${
                 set.id === activeSetId
-                  ? "bg-primary/10 border-primary"
-                  : "hover:bg-muted"
+                  ? "bg-palette-box-active dark:bg-palette-box-active-dark border-primary dark:border-primary-dark"
+                  : "bg-palette-box dark:bg-palette-box-dark hover:bg-palette-segment-item-hover dark:hover:bg-palette-segment-item-hover-dark"
               }`}
               onClick={() => setActiveSet(set.id)}
             >
               <span className="font-medium">{set.name}</span>
-              <span className="ml-2 text-xs text-muted-foreground">
+              <span className="ml-2 text-xs text-muted-foreground dark:text-muted-foreground-dark">
                 ({set.segments.length})
               </span>
 
@@ -63,7 +68,7 @@ export function SetSelector({ onCreateNewSet, onEditSet }: SetSelectorProps) {
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem
-                    className="text-destructive focus:text-destructive"
+                    className="text-destructive focus:text-destructive dark:text-destructive-dark dark:focus:text-destructive-dark"
                     onClick={() => deleteSet(set.id)}
                   >
                     <Trash2 className="h-4 w-4 mr-2" />

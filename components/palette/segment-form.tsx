@@ -59,16 +59,16 @@ export function SegmentForm({
   };
 
   return (
-    <Card>
+    <Card className="bg-palette-segment-form dark:bg-palette-segment-form-dark">
       <CardHeader className="pb-3">
-        <CardTitle className="text-lg font-medium text-primary">
+        <CardTitle className="text-lg font-medium text-primary dark:text-primary-dark">
           {editingSegment ? "Edit Segment" : "Create New Segment"}
         </CardTitle>
       </CardHeader>
       <CardContent className="pt-0">
         <div className="flex flex-col gap-4">
           <div
-            className="w-full rounded-md overflow-hidden border relative"
+            className="w-full rounded-md overflow-hidden border border-border dark:border-border-dark relative"
             style={{ backgroundColor: newColor }}
           >
             <div className="h-32 p-4 flex flex-col justify-center">
@@ -92,7 +92,7 @@ export function SegmentForm({
             <Button
               variant="ghost"
               size="icon"
-              className="absolute top-2 right-2 bg-background/20 hover:bg-background/40"
+              className="absolute top-2 right-2 bg-background/20 hover:bg-background/40 dark:bg-background-dark/20 dark:hover:bg-background-dark/40"
               onClick={openColorPicker}
             >
               <Palette className="h-4 w-4" />

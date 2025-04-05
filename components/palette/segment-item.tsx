@@ -73,27 +73,27 @@ export function SegmentItem({
     <div
       ref={setNodeRef}
       style={style}
-      className={`w-full border rounded-md mb-3 overflow-hidden ${
-        isSelected ? "ring-2 ring-primary" : ""
+      className={`w-full border border-border dark:border-border-dark rounded-md mb-3 overflow-hidden bg-palette-segment-item dark:bg-palette-segment-item-dark ${
+        isSelected ? "ring-2 ring-primary dark:ring-primary-dark" : ""
       }`}
       onClick={() => selectionMode && onSelect(segment.id)}
     >
       <div className="flex items-stretch">
         {selectionMode ? (
-          <div className="p-4 bg-background flex items-center justify-center">
+          <div className="p-4 bg-palette-segment-item dark:bg-palette-segment-item-dark flex items-center justify-center">
             {isSelected ? (
-              <CheckSquare className="h-5 w-5 text-primary" />
+              <CheckSquare className="h-5 w-5 text-primary dark:text-primary-dark" />
             ) : (
-              <Square className="h-5 w-5 text-muted-foreground" />
+              <Square className="h-5 w-5 text-muted-foreground dark:text-muted-foreground-dark" />
             )}
           </div>
         ) : (
           <div
-            className="p-4 cursor-grab bg-background"
+            className="p-4 cursor-grab bg-palette-segment-item dark:bg-palette-segment-item-dark"
             {...attributes}
             {...listeners}
           >
-            <GripVertical className="h-5 w-5 text-muted-foreground" />
+            <GripVertical className="h-5 w-5 text-muted-foreground dark:text-muted-foreground-dark" />
           </div>
         )}
 
@@ -173,7 +173,7 @@ export function SegmentItem({
         </div>
 
         {!selectionMode && (
-          <div className="p-4 flex gap-2 bg-background">
+          <div className="p-4 flex gap-2 bg-palette-segment-item dark:bg-palette-segment-item-dark">
             <Button
               variant="outline"
               size="icon"

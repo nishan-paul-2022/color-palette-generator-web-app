@@ -82,9 +82,9 @@ export function SegmentList({ onExport }: SegmentListProps) {
   }
 
   return (
-    <Card>
+    <Card className="bg-palette-segment-list dark:bg-palette-segment-list-dark">
       <CardHeader className="flex flex-row items-center justify-between pb-2">
-        <CardTitle className="text-lg font-medium text-primary">
+        <CardTitle className="text-lg font-medium text-primary dark:text-primary-dark">
           Color Segments
         </CardTitle>
         <div className="flex gap-2">
@@ -92,11 +92,21 @@ export function SegmentList({ onExport }: SegmentListProps) {
             variant={selectionMode ? "default" : "outline"}
             size="sm"
             onClick={toggleSelectionMode}
+            className={
+              selectionMode
+                ? ""
+                : "dark:bg-primary-dark dark:text-primary-foreground-dark dark:border-primary-dark dark:hover:bg-primary-dark/90"
+            }
           >
             {selectionMode ? "Cancel Selection" : "Select Multiple"}
           </Button>
 
-          <Button variant="outline" size="sm" onClick={onExport}>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={onExport}
+            className="dark:bg-primary-dark dark:text-primary-foreground-dark dark:border-primary-dark dark:hover:bg-primary-dark/90"
+          >
             <Download className="h-4 w-4 mr-2" />
             Export
           </Button>
@@ -104,7 +114,7 @@ export function SegmentList({ onExport }: SegmentListProps) {
       </CardHeader>
 
       {selectionMode && selectedSegments.length > 0 && (
-        <div className="px-6 py-2 bg-muted/20 border-y flex items-center justify-between">
+        <div className="px-6 py-2 bg-palette-selection-bar dark:bg-palette-selection-bar-dark border-y border-border dark:border-border-dark flex items-center justify-between">
           <div className="text-sm">
             {selectedSegments.length}{" "}
             {selectedSegments.length === 1 ? "segment" : "segments"} selected
