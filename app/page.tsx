@@ -1,5 +1,6 @@
 "use client";
 
+import { ClientOnly } from "@/components/client-only";
 import {
   ExportDialog,
   SegmentForm,
@@ -22,6 +23,12 @@ export default function ColorSegmentGenerator() {
     null
   );
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  // Set hydrated flag on client
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
 
   // Handle set dialog
   const handleCreateNewSet = () => {
@@ -54,7 +61,8 @@ export default function ColorSegmentGenerator() {
     };
   }, []);
 
-  return (
+  // Main app content - will only render on client to avoid hydration mismatches
+  const AppContent = () => (
     <div
       className="container mx-auto py-8 px-4 min-h-screen bg-background dark:bg-background-dark"
       ref={containerRef}
@@ -96,5 +104,14 @@ export default function ColorSegmentGenerator() {
         onOpenChange={setShowExportDialog}
       />
     </div>
+  );
+
+  // Simple loading state for server-side rendering
+  return (
+    <ClientOnly
+      fallback={<div className="p-8">Loading color palette generator...</div>}
+    >
+      {isHydrated && <AppContent />}
+    </ClientOnly>
   );
 }

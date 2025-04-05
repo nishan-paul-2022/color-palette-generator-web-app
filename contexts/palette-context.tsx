@@ -7,7 +7,7 @@ import { createContext, ReactNode, useContext, useState } from "react";
 // Default values
 const DEFAULT_SET: SegmentSet = {
   id: "default",
-  name: "Default Set",
+  name: "DEFAULT",
   segments: [],
 };
 
