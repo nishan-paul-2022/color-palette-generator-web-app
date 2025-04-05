@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 /**
  * A custom hook for working with localStorage values
- * 
+ *
  * @param key - The localStorage key to store the value under
  * @param initialValue - The initial value to use if no value is found in localStorage
  * @returns A stateful value and a function to update it
@@ -19,7 +19,7 @@ export function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T)
       }
       return initialValue;
     } catch (error) {
-      console.error(`Error reading localStorage key "${key}":`, error);
+      // console.error(`Error reading localStorage key "${key}":`, error);
       return initialValue;
     }
   });
@@ -32,9 +32,9 @@ export function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T)
         window.localStorage.setItem(key, JSON.stringify(storedValue));
       }
     } catch (error) {
-      console.error(`Error setting localStorage key "${key}":`, error);
+      // console.error(`Error setting localStorage key "${key}":`, error);
     }
   }, [key, storedValue]);
 
   return [storedValue, setStoredValue];
-} 
+}

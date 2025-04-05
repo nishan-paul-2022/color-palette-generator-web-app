@@ -1,14 +1,15 @@
-import { Button } from "@/components/button";
-import { Card, CardContent } from "@/components/card";
+import { MoreHorizontal, Pencil, Plus, Trash2 } from 'lucide-react';
+
+import { Button } from '@/components/button';
+import { Card, CardContent } from '@/components/card';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/dropdown-menu/index";
-import { usePalette } from "@/contexts/palette-context";
-import { MoreHorizontal, Pencil, Plus, Trash2 } from "lucide-react";
+} from '@/components/dropdown-menu/index';
+import { usePalette } from '@/contexts/palette-context';
 
 interface SetSelectorProps {
   onCreateNewSet: () => void;
@@ -40,8 +41,8 @@ export function SetSelector({ onCreateNewSet, onEditSet }: SetSelectorProps) {
               key={set.id}
               className={`relative group border border-border dark:border-border-dark rounded-md px-3 py-2 cursor-pointer ${
                 set.id === activeSetId
-                  ? "bg-palette-box-active dark:bg-palette-box-active-dark border-primary dark:border-primary-dark"
-                  : "bg-palette-box dark:bg-palette-box-dark hover:bg-palette-segment-item-hover dark:hover:bg-palette-segment-item-hover-dark"
+                  ? 'bg-palette-box-active dark:bg-palette-box-active-dark border-primary dark:border-primary-dark'
+                  : 'bg-palette-box dark:bg-palette-box-dark hover:bg-palette-segment-item-hover dark:hover:bg-palette-segment-item-hover-dark'
               }`}
               onClick={() => setActiveSet(set.id)}
             >

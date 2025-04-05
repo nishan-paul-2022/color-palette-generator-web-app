@@ -1,35 +1,27 @@
-"use client";
+'use client';
 
-import type { DividerProps } from "antd";
-import { Divider } from "antd";
-import * as React from "react";
+import { Divider } from 'antd';
+import * as React from 'react';
 
-import { cn } from "@/lib/utils";
+import type { DividerProps } from 'antd';
 
-interface SeparatorProps extends Omit<DividerProps, "orientation"> {
-  orientation?: "horizontal" | "vertical";
-  decorative?: boolean;
+import { cn } from '@/lib/utils';
+
+interface SeparatorProps extends Omit<DividerProps, 'orientation'> {
+  orientation?: 'horizontal' | 'vertical';
+  _decorative?: boolean;
   className?: string;
 }
 
 const Separator = React.forwardRef<HTMLDivElement, SeparatorProps>(
-  (
-    {
-      className,
-      orientation = "horizontal",
-      decorative = true,
-      style,
-      ...props
-    },
-    ref
-  ) => {
+  ({ className, orientation = 'horizontal', _decorative = true, style, ...props }, ref) => {
     return (
       <div ref={ref}>
         <Divider
-          type={orientation === "horizontal" ? "horizontal" : "vertical"}
+          type={orientation === 'horizontal' ? 'horizontal' : 'vertical'}
           className={cn(
-            "shrink-0 bg-border",
-            orientation === "horizontal" ? "h-[1px] w-full" : "h-full w-[1px]",
+            'shrink-0 bg-border',
+            orientation === 'horizontal' ? 'h-[1px] w-full' : 'h-full w-[1px]',
             className
           )}
           style={style}
@@ -39,6 +31,6 @@ const Separator = React.forwardRef<HTMLDivElement, SeparatorProps>(
     );
   }
 );
-Separator.displayName = "Separator";
+Separator.displayName = 'Separator';
 
 export { Separator };

@@ -1,24 +1,13 @@
-import { Button } from "@/components/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/tooltip";
-import { useToast } from "@/hooks/use-toast";
-import { ColorSegment } from "@/lib/types";
-import { getContrastTextColor } from "@/lib/utils";
-import { useSortable } from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
-import {
-  Check,
-  CheckSquare,
-  Edit,
-  GripVertical,
-  Square,
-  Trash2,
-} from "lucide-react";
-import { useState } from "react";
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
+import { Check, CheckSquare, Edit, GripVertical, Square, Trash2 } from 'lucide-react';
+import { useState } from 'react';
+
+import { Button } from '@/components/button';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/tooltip';
+import { useToast } from '@/hooks/use-toast';
+import { ColorSegment } from '@/lib/types';
+import { getContrastTextColor } from '@/lib/utils';
 
 interface SegmentItemProps {
   segment: ColorSegment;
@@ -37,8 +26,9 @@ export function SegmentItem({
   onSelect,
   selectionMode,
 }: SegmentItemProps) {
-  const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id: segment.id });
+  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
+    id: segment.id,
+  });
   const { toast } = useToast();
   const [titleCopied, setTitleCopied] = useState(false);
   const [colorCopied, setColorCopied] = useState(false);
@@ -50,9 +40,9 @@ export function SegmentItem({
 
   const textColor = getContrastTextColor(segment.color);
 
-  const copyToClipboard = (text: string, type: "title" | "color") => {
+  const copyToClipboard = (text: string, type: 'title' | 'color') => {
     navigator.clipboard.writeText(text).then(() => {
-      if (type === "title") {
+      if (type === 'title') {
         setTitleCopied(true);
         setTimeout(() => setTitleCopied(false), 2000);
       } else {
@@ -61,9 +51,7 @@ export function SegmentItem({
       }
 
       toast({
-        description: `${
-          type === "title" ? "Title" : "Color code"
-        } copied to clipboard!`,
+        description: `${type === 'title' ? 'Title' : 'Color code'} copied to clipboard!`,
         duration: 2000,
       });
     });
@@ -74,7 +62,7 @@ export function SegmentItem({
       ref={setNodeRef}
       style={style}
       className={`w-full border border-border dark:border-border-dark rounded-md mb-3 overflow-hidden bg-palette-segment-item dark:bg-palette-segment-item-dark ${
-        isSelected ? "ring-2 ring-primary dark:ring-primary-dark" : ""
+        isSelected ? 'ring-2 ring-primary dark:ring-primary-dark' : ''
       }`}
       onClick={() => selectionMode && onSelect(segment.id)}
     >
@@ -97,10 +85,7 @@ export function SegmentItem({
           </div>
         )}
 
-        <div
-          className="flex-grow relative"
-          style={{ backgroundColor: segment.color }}
-        >
+        <div className="flex-grow relative" style={{ backgroundColor: segment.color }}>
           <div className="absolute inset-0 p-4 flex flex-col justify-center">
             <TooltipProvider>
               <Tooltip>
@@ -110,14 +95,12 @@ export function SegmentItem({
                     style={{
                       color: textColor,
                       textShadow: `0 1px 2px ${
-                        textColor === "#ffffff"
-                          ? "rgba(0,0,0,0.5)"
-                          : "rgba(255,255,255,0.5)"
+                        textColor === '#ffffff' ? 'rgba(0,0,0,0.5)' : 'rgba(255,255,255,0.5)'
                       }`,
                     }}
                     onClick={(e) => {
                       e.stopPropagation();
-                      copyToClipboard(segment.title, "title");
+                      copyToClipboard(segment.title, 'title');
                     }}
                   >
                     {titleCopied ? (
@@ -144,14 +127,12 @@ export function SegmentItem({
                     style={{
                       color: textColor,
                       textShadow: `0 1px 2px ${
-                        textColor === "#ffffff"
-                          ? "rgba(0,0,0,0.5)"
-                          : "rgba(255,255,255,0.5)"
+                        textColor === '#ffffff' ? 'rgba(0,0,0,0.5)' : 'rgba(255,255,255,0.5)'
                       }`,
                     }}
                     onClick={(e) => {
                       e.stopPropagation();
-                      copyToClipboard(segment.color, "color");
+                      copyToClipboard(segment.color, 'color');
                     }}
                   >
                     {colorCopied ? (

@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
-import * as React from "react";
+import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
+import * as React from 'react';
 
-import { getSeparatorStyles } from "./styles";
-import { DropdownMenuSeparatorProps } from "./types";
+import { getSeparatorStyles } from './styles';
+import { DropdownMenuSeparatorProps } from './types';
 
 /**
  * DropdownMenuSeparator component
@@ -16,11 +16,7 @@ const DropdownMenuSeparator = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Separator>,
   DropdownMenuSeparatorProps
 >(({ className, ...props }, ref) => (
-  <DropdownMenuPrimitive.Separator
-    ref={ref}
-    className={getSeparatorStyles(className)}
-    {...props}
-  />
+  <DropdownMenuPrimitive.Separator ref={ref} className={getSeparatorStyles(className)} {...props} />
 ));
 
 DropdownMenuSeparator.displayName = DropdownMenuPrimitive.Separator.displayName;

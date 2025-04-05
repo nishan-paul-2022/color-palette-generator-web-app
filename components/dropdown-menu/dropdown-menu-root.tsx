@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
+import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
 
 /**
  * DropdownMenu component
@@ -34,9 +34,4 @@ const DropdownMenuPortal = DropdownMenuPrimitive.Portal;
  */
 const DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup;
 
-export {
-  DropdownMenu,
-  DropdownMenuGroup,
-  DropdownMenuPortal,
-  DropdownMenuRadioGroup,
-};
+export { DropdownMenu, DropdownMenuGroup, DropdownMenuPortal, DropdownMenuRadioGroup };

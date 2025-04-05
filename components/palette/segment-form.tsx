@@ -1,24 +1,22 @@
-import { Button } from "@/components/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/card";
-import { Input } from "@/components/input";
-import { usePalette } from "@/contexts/palette-context";
-import { ColorSegment } from "@/lib/types";
-import { getContrastTextColor } from "@/lib/utils";
-import { Palette, PlusCircle } from "lucide-react";
-import { useEffect, useState } from "react";
+import { Palette, PlusCircle } from 'lucide-react';
+import { useEffect, useState } from 'react';
+
+import { Button } from '@/components/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/card';
+import { Input } from '@/components/input';
+import { usePalette } from '@/contexts/palette-context';
+import { ColorSegment } from '@/lib/types';
+import { getContrastTextColor } from '@/lib/utils';
 
 interface SegmentFormProps {
   editingSegment: ColorSegment | null;
   onCancelEdit: () => void;
 }
 
-export function SegmentForm({
-  editingSegment,
-  onCancelEdit,
-}: SegmentFormProps) {
+export function SegmentForm({ editingSegment, onCancelEdit }: SegmentFormProps) {
   const { addSegment, updateSegment } = usePalette();
-  const [newColor, setNewColor] = useState("#6E56CF");
-  const [newTitle, setNewTitle] = useState("");
+  const [newColor, setNewColor] = useState('#6E56CF');
+  const [newTitle, setNewTitle] = useState('');
 
   // Set form values when editing an existing segment
   useEffect(() => {
@@ -26,15 +24,15 @@ export function SegmentForm({
       setNewColor(editingSegment.color);
       setNewTitle(editingSegment.title);
     } else {
-      setNewColor("#6E56CF");
-      setNewTitle("");
+      setNewColor('#6E56CF');
+      setNewTitle('');
     }
   }, [editingSegment]);
 
   const textColor = getContrastTextColor(newColor);
 
   const openColorPicker = () => {
-    document.getElementById("color-picker")?.click();
+    document.getElementById('color-picker')?.click();
   };
 
   const handleSubmit = () => {
@@ -52,8 +50,8 @@ export function SegmentForm({
           color: newColor,
           title: newTitle,
         });
-        setNewTitle("");
-        setNewColor("#6E56CF");
+        setNewTitle('');
+        setNewColor('#6E56CF');
       }
     }
   };
@@ -62,7 +60,7 @@ export function SegmentForm({
     <Card className="bg-palette-segment-form dark:bg-palette-segment-form-dark">
       <CardHeader className="pb-3">
         <CardTitle className="text-lg font-medium text-primary dark:text-primary-dark">
-          {editingSegment ? "Edit Segment" : "Create New Segment"}
+          {editingSegment ? 'Edit Segment' : 'Create New Segment'}
         </CardTitle>
       </CardHeader>
       <CardContent className="pt-0">

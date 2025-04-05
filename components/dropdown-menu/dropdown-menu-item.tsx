@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
-import * as React from "react";
+import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
+import * as React from 'react';
 
-import { getItemStyles } from "./styles";
-import { DropdownMenuItemProps } from "./types";
+import { getItemStyles } from './styles';
+import { DropdownMenuItemProps } from './types';
 
 /**
  * DropdownMenuItem component
@@ -16,11 +16,7 @@ const DropdownMenuItem = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Item>,
   DropdownMenuItemProps
 >(({ className, inset, ...props }, ref) => (
-  <DropdownMenuPrimitive.Item
-    ref={ref}
-    className={getItemStyles(className, inset)}
-    {...props}
-  />
+  <DropdownMenuPrimitive.Item ref={ref} className={getItemStyles(className, inset)} {...props} />
 ));
 
 DropdownMenuItem.displayName = DropdownMenuPrimitive.Item.displayName;

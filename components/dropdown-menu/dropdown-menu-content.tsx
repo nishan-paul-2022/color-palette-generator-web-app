@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
-import * as React from "react";
+import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
+import * as React from 'react';
 
-import { getContentStyles } from "./styles";
-import { DropdownMenuContentProps } from "./types";
+import { getContentStyles } from './styles';
+import { DropdownMenuContentProps } from './types';
 
 /**
  * DropdownMenuContent component

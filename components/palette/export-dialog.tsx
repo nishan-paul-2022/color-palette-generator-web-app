@@ -1,4 +1,7 @@
-import { Button } from "@/components/button";
+import { Download } from 'lucide-react';
+import { useRef, useState } from 'react';
+
+import { Button } from '@/components/button';
 import {
   Dialog,
   DialogContent,
@@ -6,14 +9,12 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/dialog";
-import { Input } from "@/components/input";
-import { usePalette } from "@/contexts/palette-context";
-import { useToast } from "@/hooks/use-toast";
-import { ExportOptions } from "@/lib/types";
-import { getContrastTextColor } from "@/lib/utils";
-import { Download } from "lucide-react";
-import { useRef, useState } from "react";
+} from '@/components/dialog';
+import { Input } from '@/components/input';
+import { usePalette } from '@/contexts/palette-context';
+import { useToast } from '@/hooks/use-toast';
+import { ExportOptions } from '@/lib/types';
+import { getContrastTextColor } from '@/lib/utils';
 
 interface ExportDialogProps {
   open: boolean;
@@ -28,15 +29,12 @@ export function ExportDialog({ open, onOpenChange }: ExportDialogProps) {
   const [options, setOptions] = useState<ExportOptions>({
     width: 800,
     height: 600,
-    orientation: "horizontal",
+    orientation: 'horizontal',
     showTitles: true,
   });
 
   // Update options
-  const updateOption = <K extends keyof ExportOptions>(
-    key: K,
-    value: ExportOptions[K]
-  ) => {
+  const updateOption = <K extends keyof ExportOptions>(key: K, value: ExportOptions[K]) => {
     setOptions((prev) => ({ ...prev, [key]: value }));
   };
 
@@ -44,7 +42,7 @@ export function ExportDialog({ open, onOpenChange }: ExportDialogProps) {
     if (!canvasRef.current) return;
 
     const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
     // Clear canvas
@@ -55,7 +53,7 @@ export function ExportDialog({ open, onOpenChange }: ExportDialogProps) {
     canvas.height = options.height;
 
     // Fill background
-    ctx.fillStyle = "#ffffff";
+    ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     // Get segments to export (either selected or all)
@@ -66,9 +64,9 @@ export function ExportDialog({ open, onOpenChange }: ExportDialogProps) {
 
     if (segmentsToExport.length === 0) {
       toast({
-        title: "No segments to export",
-        description: "Please create or select segments to export.",
-        variant: "destructive",
+        title: 'No segments to export',
+        description: 'Please create or select segments to export.',
+        variant: 'destructive',
       });
       return;
     }
@@ -76,7 +74,7 @@ export function ExportDialog({ open, onOpenChange }: ExportDialogProps) {
     // Calculate segment dimensions
     let segmentWidth, segmentHeight, startX, startY;
 
-    if (options.orientation === "horizontal") {
+    if (options.orientation === 'horizontal') {
       segmentWidth = canvas.width / segmentsToExport.length;
       segmentHeight = canvas.height;
       startX = 0;
@@ -91,14 +89,8 @@ export function ExportDialog({ open, onOpenChange }: ExportDialogProps) {
     // Draw segments
     segmentsToExport.forEach((segment, index) => {
       // Calculate position
-      const x =
-        options.orientation === "horizontal"
-          ? startX + index * segmentWidth
-          : startX;
-      const y =
-        options.orientation === "horizontal"
-          ? startY
-          : startY + index * segmentHeight;
+      const x = options.orientation === 'horizontal' ? startX + index * segmentWidth : startX;
+      const y = options.orientation === 'horizontal' ? startY : startY + index * segmentHeight;
 
       // Draw segment
       ctx.fillStyle = segment.color;
@@ -106,10 +98,10 @@ export function ExportDialog({ open, onOpenChange }: ExportDialogProps) {
 
       // Add title if enabled
       if (options.showTitles) {
-        ctx.font = "bold 16px Arial";
+        ctx.font = 'bold 16px Arial';
         ctx.fillStyle = getContrastTextColor(segment.color);
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
 
         // Draw title
         const titleX = x + segmentWidth / 2;
@@ -117,7 +109,7 @@ export function ExportDialog({ open, onOpenChange }: ExportDialogProps) {
         ctx.fillText(segment.title, titleX, titleY);
 
         // Draw color code
-        ctx.font = "12px Arial";
+        ctx.font = '12px Arial';
         const codeX = x + segmentWidth / 2;
         const codeY = y + segmentHeight / 2 + 10;
         ctx.fillText(segment.color, codeX, codeY);
@@ -125,17 +117,17 @@ export function ExportDialog({ open, onOpenChange }: ExportDialogProps) {
     });
 
     // Convert to image and download
-    const dataUrl = canvas.toDataURL("image/png");
-    const link = document.createElement("a");
-    link.download = `${activeSet.name.replace(/\s+/g, "-").toLowerCase()}.png`;
+    const dataUrl = canvas.toDataURL('image/png');
+    const link = document.createElement('a');
+    link.download = `${activeSet.name.replace(/\s+/g, '-').toLowerCase()}.png`;
     link.href = dataUrl;
     link.click();
 
     onOpenChange(false);
 
     toast({
-      title: "Export successful",
-      description: "Your color segments have been exported as an image.",
+      title: 'Export successful',
+      description: 'Your color segments have been exported as an image.',
     });
   };
 
@@ -160,9 +152,7 @@ export function ExportDialog({ open, onOpenChange }: ExportDialogProps) {
                   id="width"
                   type="number"
                   value={options.width}
-                  onChange={(e) =>
-                    updateOption("width", Number(e.target.value))
-                  }
+                  onChange={(e) => updateOption('width', Number(e.target.value))}
                   min={100}
                   max={3000}
                 />
@@ -175,9 +165,7 @@ export function ExportDialog({ open, onOpenChange }: ExportDialogProps) {
                   id="height"
                   type="number"
                   value={options.height}
-                  onChange={(e) =>
-                    updateOption("height", Number(e.target.value))
-                  }
+                  onChange={(e) => updateOption('height', Number(e.target.value))}
                   min={100}
                   max={3000}
                 />
@@ -189,20 +177,16 @@ export function ExportDialog({ open, onOpenChange }: ExportDialogProps) {
               <div className="flex gap-4">
                 <Button
                   htmlType="button"
-                  variant={
-                    options.orientation === "horizontal" ? "default" : "outline"
-                  }
-                  onClick={() => updateOption("orientation", "horizontal")}
+                  variant={options.orientation === 'horizontal' ? 'default' : 'outline'}
+                  onClick={() => updateOption('orientation', 'horizontal')}
                   className="flex-1"
                 >
                   Horizontal
                 </Button>
                 <Button
                   htmlType="button"
-                  variant={
-                    options.orientation === "vertical" ? "default" : "outline"
-                  }
-                  onClick={() => updateOption("orientation", "vertical")}
+                  variant={options.orientation === 'vertical' ? 'default' : 'outline'}
+                  onClick={() => updateOption('orientation', 'vertical')}
                   className="flex-1"
                 >
                   Vertical
@@ -215,7 +199,7 @@ export function ExportDialog({ open, onOpenChange }: ExportDialogProps) {
                 type="checkbox"
                 id="show-titles"
                 checked={options.showTitles}
-                onChange={(e) => updateOption("showTitles", e.target.checked)}
+                onChange={(e) => updateOption('showTitles', e.target.checked)}
                 className="rounded border-gray-300"
               />
               <label htmlFor="show-titles" className="text-sm font-medium">

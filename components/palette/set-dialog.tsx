@@ -1,4 +1,6 @@
-import { Button } from "@/components/button";
+import { useEffect, useState } from 'react';
+
+import { Button } from '@/components/button';
 import {
   Dialog,
   DialogContent,
@@ -6,10 +8,9 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/dialog";
-import { Input } from "@/components/input";
-import { usePalette } from "@/contexts/palette-context";
-import { useEffect, useState } from "react";
+} from '@/components/dialog';
+import { Input } from '@/components/input';
+import { usePalette } from '@/contexts/palette-context';
 
 interface SetDialogProps {
   open: boolean;
@@ -17,13 +18,9 @@ interface SetDialogProps {
   editingSetId: string | null;
 }
 
-export function SetDialog({
-  open,
-  onOpenChange,
-  editingSetId,
-}: SetDialogProps) {
+export function SetDialog({ open, onOpenChange, editingSetId }: SetDialogProps) {
   const { sets, createSet, updateSetName } = usePalette();
-  const [name, setName] = useState("");
+  const [name, setName] = useState('');
 
   // Initialize form when editing set
   useEffect(() => {
@@ -33,7 +30,7 @@ export function SetDialog({
         setName(setToEdit.name);
       }
     } else {
-      setName("");
+      setName('');
     }
   }, [editingSetId, sets, open]);
 
@@ -52,13 +49,11 @@ export function SetDialog({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>
-            {editingSetId ? "Edit Set" : "Create New Set"}
-          </DialogTitle>
+          <DialogTitle>{editingSetId ? 'Edit Set' : 'Create New Set'}</DialogTitle>
           <DialogDescription>
             {editingSetId
-              ? "Change the name of your color set."
-              : "Create a new set to organize your color segments."}
+              ? 'Change the name of your color set.'
+              : 'Create a new set to organize your color segments.'}
           </DialogDescription>
         </DialogHeader>
 
@@ -80,9 +75,7 @@ export function SetDialog({
           <Button variant="outline" onClick={() => onOpenChange(false)}>
             Cancel
           </Button>
-          <Button onClick={handleSubmit}>
-            {editingSetId ? "Update" : "Create"}
-          </Button>
+          <Button onClick={handleSubmit}>{editingSetId ? 'Update' : 'Create'}</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

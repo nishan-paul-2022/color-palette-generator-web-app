@@ -1,13 +1,14 @@
-import { useLocalStorage } from "@/hooks/use-local-storage";
-import { useToast } from "@/hooks/use-toast";
-import { ColorSegment, SegmentSet } from "@/lib/types";
-import { generateId } from "@/lib/utils";
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useContext, useState } from 'react';
+
+import { useLocalStorage } from '@/hooks/use-local-storage';
+import { useToast } from '@/hooks/use-toast';
+import { ColorSegment, SegmentSet } from '@/lib/types';
+import { generateId } from '@/lib/utils';
 
 // Default values
 const DEFAULT_SET: SegmentSet = {
-  id: "default",
-  name: "DEFAULT",
+  id: 'default',
+  name: 'DEFAULT',
   segments: [],
 };
 
@@ -25,11 +26,8 @@ interface PaletteContextType {
   setActiveSet: (id: string) => void;
 
   // Segments
-  addSegment: (segment: Omit<ColorSegment, "id">) => void;
-  updateSegment: (
-    id: string,
-    updates: Partial<Omit<ColorSegment, "id">>
-  ) => void;
+  addSegment: (segment: Omit<ColorSegment, 'id'>) => void;
+  updateSegment: (id: string, updates: Partial<Omit<ColorSegment, 'id'>>) => void;
   deleteSegment: (id: string) => void;
   reorderSegments: (startIndex: number, endIndex: number) => void;
 
@@ -44,9 +42,7 @@ interface PaletteContextType {
 }
 
 // Create the context
-export const PaletteContext = createContext<PaletteContextType | undefined>(
-  undefined
-);
+export const PaletteContext = createContext<PaletteContextType | undefined>(undefined);
 
 // Provider props
 interface PaletteProviderProps {
@@ -56,12 +52,10 @@ interface PaletteProviderProps {
 // Context provider component
 export function PaletteProvider({ children }: PaletteProviderProps) {
   // Load data from localStorage
-  const [sets, setSets] = useLocalStorage<SegmentSet[]>("colorPaletteSets", [
-    DEFAULT_SET,
-  ]);
+  const [sets, setSets] = useLocalStorage<SegmentSet[]>('colorPaletteSets', [DEFAULT_SET]);
   const [activeSetId, setActiveSetId] = useLocalStorage<string>(
-    "colorPaletteActiveSetId",
-    "default"
+    'colorPaletteActiveSetId',
+    'default'
   );
 
   // UI state
@@ -95,9 +89,7 @@ export function PaletteProvider({ children }: PaletteProviderProps) {
   const updateSetName = (id: string, name: string) => {
     if (!name.trim()) return;
 
-    setSets(
-      sets.map((set) => (set.id === id ? { ...set, name: name.trim() } : set))
-    );
+    setSets(sets.map((set) => (set.id === id ? { ...set, name: name.trim() } : set)));
 
     toast({
       description: `Set renamed to "${name}".`,
@@ -109,9 +101,9 @@ export function PaletteProvider({ children }: PaletteProviderProps) {
     // Don't delete if it's the only set
     if (sets.length <= 1) {
       toast({
-        title: "Cannot delete set",
-        description: "You must have at least one set of segments.",
-        variant: "destructive",
+        title: 'Cannot delete set',
+        description: 'You must have at least one set of segments.',
+        variant: 'destructive',
       });
       return;
     }
@@ -133,12 +125,12 @@ export function PaletteProvider({ children }: PaletteProviderProps) {
     setSets(newSets);
 
     toast({
-      description: "Set deleted successfully.",
+      description: 'Set deleted successfully.',
     });
   };
 
   // Add a new segment
-  const addSegment = (segment: Omit<ColorSegment, "id">) => {
+  const addSegment = (segment: Omit<ColorSegment, 'id'>) => {
     if (!segment.color || !segment.title) return;
 
     const newSegment: ColorSegment = {
@@ -148,18 +140,13 @@ export function PaletteProvider({ children }: PaletteProviderProps) {
 
     setSets(
       sets.map((set) =>
-        set.id === activeSetId
-          ? { ...set, segments: [...set.segments, newSegment] }
-          : set
+        set.id === activeSetId ? { ...set, segments: [...set.segments, newSegment] } : set
       )
     );
   };
 
   // Update an existing segment
-  const updateSegment = (
-    id: string,
-    updates: Partial<Omit<ColorSegment, "id">>
-  ) => {
+  const updateSegment = (id: string, updates: Partial<Omit<ColorSegment, 'id'>>) => {
     setSets(
       sets.map((set) =>
         set.id === activeSetId
@@ -243,9 +230,7 @@ export function PaletteProvider({ children }: PaletteProviderProps) {
         set.id === activeSetId
           ? {
               ...set,
-              segments: set.segments.filter(
-                (segment) => !selectedSegments.includes(segment.id)
-              ),
+              segments: set.segments.filter((segment) => !selectedSegments.includes(segment.id)),
             }
           : set
       )
@@ -275,9 +260,7 @@ export function PaletteProvider({ children }: PaletteProviderProps) {
     deleteSelected,
   };
 
-  return (
-    <PaletteContext.Provider value={value}>{children}</PaletteContext.Provider>
-  );
+  return <PaletteContext.Provider value={value}>{children}</PaletteContext.Provider>;
 }
 
 // Custom hook to use the palette context
@@ -285,7 +268,7 @@ export function usePalette() {
   const context = useContext(PaletteContext);
 
   if (context === undefined) {
-    throw new Error("usePalette must be used within a PaletteProvider");
+    throw new Error('usePalette must be used within a PaletteProvider');
   }
 
   return context;

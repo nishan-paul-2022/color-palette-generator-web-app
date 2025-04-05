@@ -1,5 +1,5 @@
-import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
+import { clsx, type ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -12,7 +12,7 @@ export function cn(...inputs: ClassValue[]) {
  */
 export function getContrastTextColor(hexColor: string): string {
   // Remove the # if it exists
-  const color = hexColor.charAt(0) === "#" ? hexColor.substring(1) : hexColor;
+  const color = hexColor.charAt(0) === '#' ? hexColor.substring(1) : hexColor;
 
   // Convert to RGB
   const r = Number.parseInt(color.substring(0, 2), 16) || 0;
@@ -23,7 +23,7 @@ export function getContrastTextColor(hexColor: string): string {
   const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
 
   // Return white for dark colors, black for light colors
-  return luminance > 0.5 ? "#000000" : "#ffffff";
+  return luminance > 0.5 ? '#000000' : '#ffffff';
 }
 
 /**

@@ -23,12 +23,12 @@ export {
   DropdownMenuGroup,
   DropdownMenuPortal,
   DropdownMenuRadioGroup,
-} from "./dropdown-menu-root";
+} from './dropdown-menu-root';
 
-export { DropdownMenuContent } from "./dropdown-menu-content";
-export { DropdownMenuItem } from "./dropdown-menu-item";
-export { DropdownMenuSeparator } from "./dropdown-menu-separator";
-export { DropdownMenuTrigger } from "./dropdown-menu-trigger";
+export { DropdownMenuContent } from './dropdown-menu-content';
+export { DropdownMenuItem } from './dropdown-menu-item';
+export { DropdownMenuSeparator } from './dropdown-menu-separator';
+export { DropdownMenuTrigger } from './dropdown-menu-trigger';
 
 // Re-export types for consumer usage
-export type * from "./types";
+export type * from './types';

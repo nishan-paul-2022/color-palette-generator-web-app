@@ -1,6 +1,3 @@
-import { Button } from "@/components/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/card";
-import { usePalette } from "@/contexts/palette-context";
 import {
   closestCenter,
   DndContext,
@@ -9,15 +6,20 @@ import {
   useSensor,
   useSensors,
   type DragEndEvent,
-} from "@dnd-kit/core";
+} from '@dnd-kit/core';
 import {
   SortableContext,
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
-import { Download, Trash2 } from "lucide-react";
-import { useRef } from "react";
-import { SegmentItem } from "./segment-item";
+} from '@dnd-kit/sortable';
+import { Download, Trash2 } from 'lucide-react';
+import { useRef } from 'react';
+
+import { SegmentItem } from './segment-item';
+
+import { Button } from '@/components/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/card';
+import { usePalette } from '@/contexts/palette-context';
 
 interface SegmentListProps {
   onExport: () => void;
@@ -58,7 +60,7 @@ export function SegmentList({ onExport }: SegmentListProps) {
     const segment = segments.find((s) => s.id === id);
     if (segment) {
       // This event will bubble up to the parent
-      const event = new CustomEvent("segment-edit", {
+      const event = new CustomEvent('segment-edit', {
         detail: { segment },
         bubbles: true,
       });
@@ -89,16 +91,16 @@ export function SegmentList({ onExport }: SegmentListProps) {
         </CardTitle>
         <div className="flex gap-2">
           <Button
-            variant={selectionMode ? "default" : "outline"}
+            variant={selectionMode ? 'default' : 'outline'}
             size="sm"
             onClick={toggleSelectionMode}
             className={
               selectionMode
-                ? ""
-                : "dark:bg-primary-dark dark:text-primary-foreground-dark dark:border-primary-dark dark:hover:bg-primary-dark/90"
+                ? ''
+                : 'dark:bg-primary-dark dark:text-primary-foreground-dark dark:border-primary-dark dark:hover:bg-primary-dark/90'
             }
           >
-            {selectionMode ? "Cancel Selection" : "Select Multiple"}
+            {selectionMode ? 'Cancel Selection' : 'Select Multiple'}
           </Button>
 
           <Button
@@ -116,8 +118,8 @@ export function SegmentList({ onExport }: SegmentListProps) {
       {selectionMode && selectedSegments.length > 0 && (
         <div className="px-6 py-2 bg-palette-selection-bar dark:bg-palette-selection-bar-dark border-y border-border dark:border-border-dark flex items-center justify-between">
           <div className="text-sm">
-            {selectedSegments.length}{" "}
-            {selectedSegments.length === 1 ? "segment" : "segments"} selected
+            {selectedSegments.length} {selectedSegments.length === 1 ? 'segment' : 'segments'}{' '}
+            selected
           </div>
           <div className="flex gap-2">
             <Button variant="ghost" size="sm" onClick={selectAll}>

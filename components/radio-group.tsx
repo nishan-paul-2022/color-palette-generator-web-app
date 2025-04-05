@@ -1,16 +1,14 @@
-"use client";
+'use client';
 
-import type {
-  RadioGroupProps as AntRadioGroupProps,
-  RadioChangeEvent,
-} from "antd";
-import { Radio } from "antd";
-import type { CheckboxRef } from "antd/lib/checkbox";
-import * as React from "react";
+import { Radio } from 'antd';
+import * as React from 'react';
 
-import { cn } from "@/lib/utils";
+import type { RadioGroupProps as AntRadioGroupProps, RadioChangeEvent } from 'antd';
+import type { CheckboxRef } from 'antd/lib/checkbox';
 
-interface RadioGroupProps extends Omit<AntRadioGroupProps, "onChange"> {
+import { cn } from '@/lib/utils';
+
+interface RadioGroupProps extends Omit<AntRadioGroupProps, 'onChange'> {
   className?: string;
   onChange?: (value: string) => void;
 }
@@ -23,18 +21,17 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
 
     return (
       <Radio.Group
-        className={cn("grid gap-2", className)}
+        className={cn('grid gap-2', className)}
         onChange={handleChange}
         {...props}
-        ref={ref as any}
+        ref={ref as React.RefObject<HTMLDivElement>}
       />
     );
   }
 );
-RadioGroup.displayName = "RadioGroup";
+RadioGroup.displayName = 'RadioGroup';
 
-interface RadioGroupItemProps
-  extends React.ComponentPropsWithoutRef<typeof Radio> {
+interface RadioGroupItemProps extends React.ComponentPropsWithoutRef<typeof Radio> {
   className?: string;
   value: string;
 }
@@ -44,10 +41,7 @@ const RadioGroupItem = React.forwardRef<CheckboxRef, RadioGroupItemProps>(
     return (
       <Radio
         ref={ref}
-        className={cn(
-          "text-primary disabled:cursor-not-allowed disabled:opacity-50",
-          className
-        )}
+        className={cn('text-primary disabled:cursor-not-allowed disabled:opacity-50', className)}
         {...props}
       >
         {children}
@@ -55,6 +49,6 @@ const RadioGroupItem = React.forwardRef<CheckboxRef, RadioGroupItemProps>(
     );
   }
 );
-RadioGroupItem.displayName = "RadioGroupItem";
+RadioGroupItem.displayName = 'RadioGroupItem';
 
 export { RadioGroup, RadioGroupItem };

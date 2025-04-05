@@ -13,6 +13,6 @@ export interface SegmentSet {
 export interface ExportOptions {
   width: number;
   height: number;
-  orientation: "horizontal" | "vertical";
+  orientation: 'horizontal' | 'vertical';
   showTitles: boolean;
 }

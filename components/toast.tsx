@@ -1,33 +1,32 @@
-"use client";
+'use client';
 
-import type { NotificationArgsProps } from "antd";
-import { notification } from "antd";
-import { cva, type VariantProps } from "class-variance-authority";
-import * as React from "react";
+import { notification } from 'antd';
+import { cva, type VariantProps } from 'class-variance-authority';
+import * as React from 'react';
 
-import { cn } from "@/lib/utils";
+import type { NotificationArgsProps } from 'antd';
+
+import { cn } from '@/lib/utils';
 
 // Define variants similar to the original component
 const toastVariants = cva(
-  "group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border p-6 pr-8 shadow-lg",
+  'group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border p-6 pr-8 shadow-lg',
   {
     variants: {
       variant: {
-        default: "border bg-background text-foreground",
-        destructive:
-          "destructive border-destructive bg-destructive text-destructive-foreground",
+        default: 'border bg-background text-foreground',
+        destructive: 'destructive border-destructive bg-destructive text-destructive-foreground',
       },
     },
     defaultVariants: {
-      variant: "default",
+      variant: 'default',
     },
   }
 );
 
 // Types for our Toast API
-export interface ToastProps
-  extends Omit<NotificationArgsProps, "className" | "style" | "message"> {
-  variant?: VariantProps<typeof toastVariants>["variant"];
+export interface ToastProps extends Omit<NotificationArgsProps, 'className' | 'style' | 'message'> {
+  variant?: VariantProps<typeof toastVariants>['variant'];
   className?: string;
   title?: React.ReactNode;
 }
@@ -51,9 +50,9 @@ const Toast = {
   show: ({
     title,
     description,
-    variant = "default",
+    variant = 'default',
     duration = 4.5,
-    placement = "topRight",
+    placement = 'topRight',
     className,
     btn,
     ...props
@@ -70,11 +69,10 @@ const Toast = {
   },
 
   // Helper function for success toasts
-  success: (props: ToastProps) => Toast.show({ ...props, variant: "default" }),
+  success: (props: ToastProps) => Toast.show({ ...props, variant: 'default' }),
 
   // Helper function for error/destructive toasts
-  error: (props: ToastProps) =>
-    Toast.show({ ...props, variant: "destructive" }),
+  error: (props: ToastProps) => Toast.show({ ...props, variant: 'destructive' }),
 
   // Dismiss all toasts
   dismiss: () => api.destroy(),
