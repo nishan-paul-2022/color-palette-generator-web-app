@@ -59,7 +59,7 @@ import {
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-import AppIcon from "@/components/ui/icons/icon.svg";
+import AppIcon from "@/public/icon.svg";
 
 interface ColorSegment {
   id: string;
