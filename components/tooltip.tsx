@@ -45,12 +45,12 @@ const Tooltip: React.FC<TooltipProps> = ({
 
 // Extended interface to handle Radix UI's asChild prop
 interface TooltipTriggerProps extends React.HTMLAttributes<HTMLDivElement> {
-  _asChild?: boolean;
+  asChild?: boolean;
 }
 
 // For backward compatibility with Radix UI API
 const TooltipTrigger = React.forwardRef<HTMLDivElement, TooltipTriggerProps>(
-  ({ _asChild, ...props }, ref) => <div ref={ref} {...props} />
+  ({ asChild, ...props }, ref) => <div ref={ref} {...props} />
 );
 TooltipTrigger.displayName = 'TooltipTrigger';
 
