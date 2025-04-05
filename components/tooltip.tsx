@@ -1,30 +1,75 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import * as TooltipPrimitive from "@radix-ui/react-tooltip"
+import { Tooltip as AntTooltip } from "antd";
+import * as React from "react";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
-const TooltipProvider = TooltipPrimitive.Provider
+const TooltipProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  return <>{children}</>;
+};
 
-const Tooltip = TooltipPrimitive.Root
+interface TooltipProps {
+  children: React.ReactNode;
+  content?: React.ReactNode;
+  open?: boolean;
+  defaultOpen?: boolean;
+  onOpenChange?: (open: boolean) => void;
+}
 
-const TooltipTrigger = TooltipPrimitive.Trigger
+const Tooltip: React.FC<TooltipProps> = ({
+  children,
+  content,
+  open,
+  defaultOpen,
+  onOpenChange,
+  ...props
+}) => {
+  return (
+    <AntTooltip
+      title={content}
+      open={open}
+      defaultOpen={defaultOpen}
+      onOpenChange={onOpenChange}
+      classNames={{
+        root: cn(
+          "rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md"
+        ),
+      }}
+      {...props}
+    >
+      {children}
+    </AntTooltip>
+  );
+};
 
+// Extended interface to handle Radix UI's asChild prop
+interface TooltipTriggerProps extends React.HTMLAttributes<HTMLDivElement> {
+  asChild?: boolean;
+}
+
+// For backward compatibility with Radix UI API
+const TooltipTrigger = React.forwardRef<HTMLDivElement, TooltipTriggerProps>(
+  ({ asChild, ...props }, ref) => <div ref={ref} {...props} />
+);
+TooltipTrigger.displayName = "TooltipTrigger";
+
+// For backward compatibility with Radix UI API
 const TooltipContent = React.forwardRef<
-  React.ElementRef<typeof TooltipPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content>
->(({ className, sideOffset = 4, ...props }, ref) => (
-  <TooltipPrimitive.Content
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
     ref={ref}
-    sideOffset={sideOffset}
     className={cn(
-      "z-50 overflow-hidden rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+      "z-50 overflow-hidden rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md",
       className
     )}
     {...props}
   />
-))
-TooltipContent.displayName = TooltipPrimitive.Content.displayName
+));
+TooltipContent.displayName = "TooltipContent";
 
-export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider }
+export { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger };

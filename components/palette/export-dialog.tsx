@@ -188,7 +188,7 @@ export function ExportDialog({ open, onOpenChange }: ExportDialogProps) {
               <label className="text-sm font-medium">Orientation</label>
               <div className="flex gap-4">
                 <Button
-                  type="button"
+                  htmlType="button"
                   variant={
                     options.orientation === "horizontal" ? "default" : "outline"
                   }
@@ -198,7 +198,7 @@ export function ExportDialog({ open, onOpenChange }: ExportDialogProps) {
                   Horizontal
                 </Button>
                 <Button
-                  type="button"
+                  htmlType="button"
                   variant={
                     options.orientation === "vertical" ? "default" : "outline"
                   }

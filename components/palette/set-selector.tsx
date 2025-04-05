@@ -6,7 +6,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/dropdown-menu";
+} from "@/components/dropdown-menu/index";
 import { usePalette } from "@/contexts/palette-context";
 import { MoreHorizontal, Pencil, Plus, Trash2 } from "lucide-react";
 
