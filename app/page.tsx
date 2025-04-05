@@ -1,8 +1,7 @@
 "use client";
 
-import { ThemeToggle } from "@/components/theme-toggle";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/card";
 import {
   Dialog,
   DialogContent,
@@ -10,21 +9,22 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
+} from "@/components/dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
+} from "@/components/dropdown-menu";
+import { Input } from "@/components/input";
+import { ThemeToggle } from "@/components/theme-toggle";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
+} from "@/components/tooltip";
 import { useToast } from "@/hooks/use-toast";
 import {
   closestCenter,
@@ -660,13 +660,13 @@ export default function ColorSegmentGenerator() {
 
   return (
     <div className="container mx-auto py-8 px-4">
-    <div className="flex justify-between items-center mb-6">
+      <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold flex items-center gap-2">
           <AppIcon className="w-8 h-8" />
           Color Palette Generator
         </h1>
         <ThemeToggle />
-    </div>
+      </div>
 
       <div className="flex flex-col gap-6">
         {/* Set Selection Tabs */}
