@@ -71,7 +71,7 @@ export function SegmentForm({ editingSegment, onCancelEdit }: SegmentFormProps) 
                 value={newTitle}
                 onChange={(e) => setNewTitle(e.target.value)}
                 placeholder="Enter segment title"
-                className="bg-slate-100 dark:bg-transparent border-0 text-lg font-bold placeholder:opacity-70 focus-visible:ring-0 focus-visible:ring-offset-0 w-3/4 mx-auto text-black dark:text-white"
+                className="bg-slate-100 dark:bg-gray-800 border-0 text-lg font-bold placeholder:opacity-70 focus-visible:ring-0 focus-visible:ring-offset-0 w-3/4 mx-auto text-black dark:text-white"
               />
               <div className="relative w-3/4 mx-auto">
                 <Input
@@ -79,7 +79,7 @@ export function SegmentForm({ editingSegment, onCancelEdit }: SegmentFormProps) 
                   value={newColor}
                   onChange={(e) => setNewColor(e.target.value)}
                   placeholder="#000000"
-                  className="bg-slate-100 dark:bg-transparent border-0 text-sm placeholder:opacity-70 focus-visible:ring-0 focus-visible:ring-offset-0 w-full pr-12 text-black dark:text-white"
+                  className="bg-slate-100 dark:bg-gray-800 border-0 text-sm placeholder:opacity-70 focus-visible:ring-0 focus-visible:ring-offset-0 w-full pr-12 text-black dark:text-white"
                 />
                 <Button
                   variant="ghost"
