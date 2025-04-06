@@ -5,12 +5,12 @@ export default function AntDesignDemoPage() {
     <main className="container mx-auto py-10 px-4">
       <h1 className="text-3xl font-bold mb-6">Ant Design Demo</h1>
       <p className="mb-6 text-gray-600 dark:text-gray-300">
-        This page demonstrates the integration of Ant Design components with our 
-        React 19 + Next.js 15 + Tailwind CSS + TypeScript stack.
+        This page demonstrates the integration of Ant Design components with our React 19 + Next.js
+        15 + Tailwind CSS + TypeScript stack.
       </p>
-      
+
       <AntDesignDemo />
-      
+
       <div className="mt-8 p-4 border border-gray-200 dark:border-gray-700 rounded-md bg-gray-50 dark:bg-gray-800">
         <h2 className="text-lg font-medium mb-2">Documentation</h2>
         <p className="text-sm text-gray-600 dark:text-gray-300">
@@ -22,4 +22,4 @@ export default function AntDesignDemoPage() {
       </div>
     </main>
   );
-} 
+}

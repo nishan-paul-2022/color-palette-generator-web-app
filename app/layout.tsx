@@ -1,8 +1,8 @@
-import type { Metadata } from 'next';
-
 import { AntDesignRegistry } from './ant-design-registry';
 import './globals.css';
 import { Providers } from './providers';
+
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Color Palette Generator',

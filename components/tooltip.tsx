@@ -44,14 +44,17 @@ const Tooltip: React.FC<TooltipProps> = ({
 };
 
 // Extended interface to handle Radix UI's asChild prop
-interface TooltipTriggerProps extends React.HTMLAttributes<HTMLDivElement> {
+interface TooltipTriggerProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'asChild'> {
   asChild?: boolean;
 }
 
 // For backward compatibility with Radix UI API
-const TooltipTrigger = React.forwardRef<HTMLDivElement, TooltipTriggerProps>(
-  ({ asChild, ...props }, ref) => <div ref={ref} {...props} />
-);
+const TooltipTrigger = React.forwardRef<HTMLDivElement, TooltipTriggerProps>((props, ref) => {
+  // Create a new object without the asChild property
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { asChild, ...restProps } = props;
+  return <div ref={ref} {...restProps} />;
+});
 TooltipTrigger.displayName = 'TooltipTrigger';
 
 // For backward compatibility with Radix UI API

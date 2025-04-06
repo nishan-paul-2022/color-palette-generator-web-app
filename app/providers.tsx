@@ -2,9 +2,10 @@
 
 import { ReactNode } from 'react';
 
+import { AntDesignProvider } from './ant-design-provider';
+
 import { ThemeProvider } from '@/app/theme-provider';
 import { PaletteProvider } from '@/contexts/palette-context';
-import { AntDesignProvider } from './ant-design-provider';
 
 export function Providers({ children }: { children: ReactNode }) {
   return (

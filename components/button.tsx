@@ -83,7 +83,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         size={getAntSize()}
         htmlType={htmlType}
         type={getAntType()}
-        {...(props as any)}
+        {...(props as Omit<ButtonProps, 'htmlType' | 'variant' | 'size'>)}
       >
         {children}
       </AntButton>

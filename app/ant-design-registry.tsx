@@ -10,12 +10,10 @@ import React from 'react';
  */
 export function AntDesignRegistry({ children }: { children: React.ReactNode }) {
   const cache = React.useMemo(() => createCache(), []);
-  
+
   useServerInsertedHTML(() => {
-    return (
-      <style id="antd" dangerouslySetInnerHTML={{ __html: extractStyle(cache, true) }} />
-    );
+    return <style id="antd" dangerouslySetInnerHTML={{ __html: extractStyle(cache, true) }} />;
   });
-  
+
   return <StyleProvider cache={cache}>{children}</StyleProvider>;
-} 
+}

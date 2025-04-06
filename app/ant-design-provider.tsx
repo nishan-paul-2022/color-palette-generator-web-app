@@ -1,8 +1,9 @@
 'use client';
 
-import { useAntDesignTheme } from '@/hooks/useAntDesignTheme';
 import { ConfigProvider } from 'antd';
 import { ReactNode } from 'react';
+
+import { useAntDesignTheme } from '@/hooks/useAntDesignTheme';
 
 /**
  * AntDesignProvider component that provides theme configuration for Ant Design.
@@ -15,6 +16,6 @@ export function AntDesignProvider({ children }: { children: ReactNode }) {
     colorPrimary: '#1677ff',
     // These will be merged with defaults from the hook
   });
-  
+
   return <ConfigProvider theme={themeConfig}>{children}</ConfigProvider>;
-} 
+}
