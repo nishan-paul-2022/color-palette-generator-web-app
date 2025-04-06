@@ -20,12 +20,14 @@ import { SegmentItem } from './segment-item';
 import { Button } from '@/components/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/card';
 import { usePalette } from '@/contexts/palette-context';
+import { ColorSegment } from '@/lib/types';
 
 interface SegmentListProps {
   onExport: () => void;
+  onEditSegment?: (segment: ColorSegment) => void;
 }
 
-export function SegmentList({ onExport }: SegmentListProps) {
+export function SegmentList({ onExport, onEditSegment }: SegmentListProps) {
   const {
     activeSet,
     selectedSegments,
@@ -55,16 +57,9 @@ export function SegmentList({ onExport }: SegmentListProps) {
   );
 
   const handleEdit = (id: string) => {
-    // This will be implemented in the parent component
-    // and passed down as a prop
     const segment = segments.find((s) => s.id === id);
-    if (segment) {
-      // This event will bubble up to the parent
-      const event = new CustomEvent('segment-edit', {
-        detail: { segment },
-        bubbles: true,
-      });
-      containerRef.current?.dispatchEvent(event);
+    if (segment && onEditSegment) {
+      onEditSegment(segment);
     }
   };
 

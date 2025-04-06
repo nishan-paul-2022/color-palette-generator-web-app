@@ -39,23 +39,10 @@ export default function ColorSegmentGenerator() {
     setShowSetDialog(true);
   };
 
-  // Add event listener for segment edit events
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const handleSegmentEditEvent = (event: Event) => {
-      if (event instanceof CustomEvent) {
-        setEditingSegment((event as CustomEvent<{ segment: ColorSegment }>).detail.segment);
-      }
-    };
-
-    container.addEventListener('segment-edit', handleSegmentEditEvent);
-
-    return () => {
-      container.removeEventListener('segment-edit', handleSegmentEditEvent);
-    };
-  }, []);
+  // Handle segment edit
+  const handleEditSegment = (segment: ColorSegment) => {
+    setEditingSegment(segment);
+  };
 
   // Main app content - will only render on client to avoid hydration mismatches
   const AppContent = () => (
@@ -79,7 +66,7 @@ export default function ColorSegmentGenerator() {
         <SegmentForm editingSegment={editingSegment} onCancelEdit={() => setEditingSegment(null)} />
 
         {/* Segments Display */}
-        <SegmentList onExport={() => setShowExportDialog(true)} />
+        <SegmentList onExport={() => setShowExportDialog(true)} onEditSegment={handleEditSegment} />
       </div>
 
       {/* Dialogs */}
