@@ -4,7 +4,7 @@ import { Check, CheckSquare, Edit, GripVertical, Square, Trash2 } from 'lucide-r
 import { useState } from 'react';
 
 import { Button } from '@/components/button';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/tooltip';
+import { Tooltip, TooltipProvider, TooltipTrigger } from '@/components/tooltip';
 import { useToast } from '@/hooks/use-toast';
 import { ColorSegment } from '@/lib/types';
 import { getContrastTextColor } from '@/lib/utils';
@@ -88,7 +88,7 @@ export function SegmentItem({
         <div className="flex-grow relative" style={{ backgroundColor: segment.color }}>
           <div className="absolute inset-0 p-4 flex flex-col justify-center">
             <TooltipProvider>
-              <Tooltip>
+              <Tooltip content={<p>Click to copy title</p>}>
                 <TooltipTrigger asChild>
                   <button
                     className="font-bold text-lg hover:underline focus:outline-none text-left"
@@ -113,14 +113,11 @@ export function SegmentItem({
                     )}
                   </button>
                 </TooltipTrigger>
-                <TooltipContent>
-                  <p>Click to copy title</p>
-                </TooltipContent>
               </Tooltip>
             </TooltipProvider>
 
             <TooltipProvider>
-              <Tooltip>
+              <Tooltip content={<p>Click to copy color code</p>}>
                 <TooltipTrigger asChild>
                   <button
                     className="text-sm mt-1 hover:underline focus:outline-none text-left"
@@ -145,9 +142,6 @@ export function SegmentItem({
                     )}
                   </button>
                 </TooltipTrigger>
-                <TooltipContent>
-                  <p>Click to copy color code</p>
-                </TooltipContent>
               </Tooltip>
             </TooltipProvider>
           </div>

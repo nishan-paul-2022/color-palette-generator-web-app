@@ -17,7 +17,7 @@ interface TooltipProps {
   onOpenChange?: (open: boolean) => void;
 }
 
-const Tooltip: React.FC<TooltipProps> = ({
+const Tooltip: React.FC<TooltipProps & { 'data-state'?: string }> = ({
   children,
   content,
   open,
@@ -31,6 +31,9 @@ const Tooltip: React.FC<TooltipProps> = ({
       open={open}
       defaultOpen={defaultOpen}
       onOpenChange={onOpenChange}
+      trigger="hover"
+      mouseEnterDelay={0.1}
+      mouseLeaveDelay={0.1}
       classNames={{
         root: cn(
           'rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md'
@@ -57,7 +60,7 @@ const TooltipTrigger = React.forwardRef<HTMLDivElement, TooltipTriggerProps>((pr
 });
 TooltipTrigger.displayName = 'TooltipTrigger';
 
-// For backward compatibility with Radix UI API
+// For backward compatibility with Radix UI API - this will store content to be passed to the Tooltip
 const TooltipContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
     <div
