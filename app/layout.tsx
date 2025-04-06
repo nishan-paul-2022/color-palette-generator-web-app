@@ -1,13 +1,15 @@
-import { ThemeProvider } from "@/components/theme-provider";
-import type { Metadata } from "next";
-import "./globals.css";
+import { AntDesignRegistry } from './ant-design-registry';
+import './globals.css';
+import { Providers } from './providers';
+
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Color Palette Generator",
-  description: "Create and manage color palettes",
-  generator: "v0.dev",
+  title: 'Color Palette Generator',
+  description: 'Create and manage color palettes',
+  generator: 'v0.dev',
   icons: {
-    icon: "/icon.png",
+    icon: '/icon.png',
   },
 };
 
@@ -18,10 +20,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
-        </ThemeProvider>
+      <body className="bg-background text-foreground dark:bg-background-dark dark:text-foreground-dark">
+        <AntDesignRegistry>
+          <Providers>{children}</Providers>
+        </AntDesignRegistry>
       </body>
     </html>
   );

@@ -1,0 +1,11 @@
+.next
+build
+node_modules
+public
+pnpm-lock.yaml
+package-lock.json
+.vercel
+coverage
+.env*
+*.log
+*.md 
