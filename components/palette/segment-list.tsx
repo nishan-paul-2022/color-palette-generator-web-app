@@ -84,15 +84,15 @@ export function SegmentList({ onExport, onEditSegment }: SegmentListProps) {
         <CardTitle className="text-lg font-medium text-primary dark:text-primary-dark">
           Color Segments
         </CardTitle>
-        <div className="flex gap-2">
+        <div className="flex flex-col sm:flex-row gap-2">
           <Button
             variant={selectionMode ? 'default' : 'outline'}
             size="sm"
             onClick={toggleSelectionMode}
             className={
               selectionMode
-                ? ''
-                : 'dark:bg-primary-dark dark:text-primary-foreground-dark dark:border-primary-dark dark:hover:bg-primary-dark/90'
+                ? 'w-full sm:w-auto'
+                : 'w-full sm:w-auto dark:bg-primary-dark dark:text-primary-foreground-dark dark:border-primary-dark dark:hover:bg-primary-dark/90'
             }
           >
             {selectionMode ? 'Cancel Selection' : 'Select Multiple'}
@@ -102,7 +102,7 @@ export function SegmentList({ onExport, onEditSegment }: SegmentListProps) {
             variant="outline"
             size="sm"
             onClick={onExport}
-            className="dark:bg-primary-dark dark:text-primary-foreground-dark dark:border-primary-dark dark:hover:bg-primary-dark/90"
+            className="w-full sm:w-auto dark:bg-primary-dark dark:text-primary-foreground-dark dark:border-primary-dark dark:hover:bg-primary-dark/90"
           >
             <Download className="h-4 w-4 mr-2" />
             Export
