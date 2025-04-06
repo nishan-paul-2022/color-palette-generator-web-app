@@ -6,7 +6,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/card';
 import { Input } from '@/components/input';
 import { usePalette } from '@/contexts/palette-context';
 import { ColorSegment } from '@/lib/types';
-import { getContrastTextColor } from '@/lib/utils';
 
 interface SegmentFormProps {
   editingSegment: ColorSegment | null;
@@ -28,8 +27,6 @@ export function SegmentForm({ editingSegment, onCancelEdit }: SegmentFormProps) 
       setNewTitle('');
     }
   }, [editingSegment]);
-
-  const textColor = getContrastTextColor(newColor);
 
   const openColorPicker = () => {
     document.getElementById('color-picker')?.click();
@@ -74,8 +71,7 @@ export function SegmentForm({ editingSegment, onCancelEdit }: SegmentFormProps) 
                 value={newTitle}
                 onChange={(e) => setNewTitle(e.target.value)}
                 placeholder="Enter segment title"
-                className="bg-transparent border-0 text-lg font-bold placeholder:opacity-70 focus-visible:ring-0 focus-visible:ring-offset-0 w-3/4 mx-auto"
-                style={{ color: textColor }}
+                className="bg-slate-100 dark:bg-transparent border-0 text-lg font-bold placeholder:opacity-70 focus-visible:ring-0 focus-visible:ring-offset-0 w-3/4 mx-auto text-black dark:text-white"
               />
               <div className="relative w-3/4 mx-auto">
                 <Input
@@ -83,8 +79,7 @@ export function SegmentForm({ editingSegment, onCancelEdit }: SegmentFormProps) 
                   value={newColor}
                   onChange={(e) => setNewColor(e.target.value)}
                   placeholder="#000000"
-                  className="bg-transparent border-0 text-sm placeholder:opacity-70 focus-visible:ring-0 focus-visible:ring-offset-0 w-full pr-12"
-                  style={{ color: textColor }}
+                  className="bg-slate-100 dark:bg-transparent border-0 text-sm placeholder:opacity-70 focus-visible:ring-0 focus-visible:ring-offset-0 w-full pr-12 text-black dark:text-white"
                 />
                 <Button
                   variant="ghost"
