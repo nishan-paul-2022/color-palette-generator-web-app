@@ -69,32 +69,33 @@ export function SegmentForm({ editingSegment, onCancelEdit }: SegmentFormProps) 
             className="w-full rounded-md overflow-hidden border border-border dark:border-border-dark relative"
             style={{ backgroundColor: newColor }}
           >
-            <div className="h-32 p-4 flex flex-col justify-center">
+            <div className="h-32 p-4 flex flex-col justify-center gap-3">
               <Input
                 value={newTitle}
                 onChange={(e) => setNewTitle(e.target.value)}
                 placeholder="Enter segment title"
-                className="bg-transparent border-0 text-lg font-bold placeholder:opacity-70 focus-visible:ring-0 focus-visible:ring-offset-0"
+                className="bg-transparent border-0 text-lg font-bold placeholder:opacity-70 focus-visible:ring-0 focus-visible:ring-offset-0 w-3/4 mx-auto"
                 style={{ color: textColor }}
               />
-              <Input
-                type="text"
-                value={newColor}
-                onChange={(e) => setNewColor(e.target.value)}
-                placeholder="#000000"
-                className="bg-transparent border-0 text-sm placeholder:opacity-70 focus-visible:ring-0 focus-visible:ring-offset-0"
-                style={{ color: textColor }}
-              />
+              <div className="relative w-3/4 mx-auto">
+                <Input
+                  type="text"
+                  value={newColor}
+                  onChange={(e) => setNewColor(e.target.value)}
+                  placeholder="#000000"
+                  className="bg-transparent border-0 text-sm placeholder:opacity-70 focus-visible:ring-0 focus-visible:ring-offset-0 w-full pr-12"
+                  style={{ color: textColor }}
+                />
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="absolute right-1 top-1/2 -translate-y-1/2 h-8 w-8 rounded-full bg-background/15 hover:bg-background/30 backdrop-blur-sm transition-colors"
+                  onClick={openColorPicker}
+                >
+                  <Palette className="h-4 w-4" />
+                </Button>
+              </div>
             </div>
-
-            <Button
-              variant="ghost"
-              size="icon"
-              className="absolute top-2 right-2 bg-background/20 hover:bg-background/40 dark:bg-background-dark/20 dark:hover:bg-background-dark/40"
-              onClick={openColorPicker}
-            >
-              <Palette className="h-4 w-4" />
-            </Button>
           </div>
 
           <Input
@@ -110,10 +111,10 @@ export function SegmentForm({ editingSegment, onCancelEdit }: SegmentFormProps) 
               {editingSegment ? (
                 <>Update Segment</>
               ) : (
-                <>
+                <span className="flex items-center">
                   <PlusCircle className="mr-2 h-4 w-4" />
                   Add Segment
-                </>
+                </span>
               )}
             </Button>
 
